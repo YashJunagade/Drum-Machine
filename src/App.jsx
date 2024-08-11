@@ -1,8 +1,8 @@
 import DrumKey from "./components/DrumKey";
 import Display from "./components/Display";
+import Controls from "./components/Controls";
 import { useState } from "react";
 import "./App.css";
-import { Button, Slider } from "@mui/material";
 
 function App() {
   const drumKeys = [
@@ -54,51 +54,35 @@ function App() {
   ];
 
   const [display, setDisplay] = useState("");
+  const [volume, setVolume] = useState(0.5);
+  const [power, setPower] = useState(true);
+
   function handleDisplay(key) {
     setDisplay(key);
-  }
-
-  const [volume, setVolume] = useState(0.5);
-  function handleVolumeChange(event, newValue) {
-    setVolume(newValue / 100);
-  }
-
-  const [onOf, setOnOf] = useState(false);
-  function handleOnOf() {
-    if (onOf) {
-      setOnOf(!onOf);
-    } else {
-      setOnOf(!onOf);
-    }
   }
 
   return (
     <>
       <div id="drum-machine">
-        <Slider
-          defaultValue={50}
-          aria-label="Default"
-          valueLabelDisplay="auto"
-          onChange={handleVolumeChange}
+        <Controls
+          setVolume={setVolume}
+          volume={volume}
+          power={power}
+          setPower={setPower}
         />
-        {onOf === true ? (
-          <Button variant="contained" color="success" onClick={handleOnOf}>
-            On
-          </Button>
-        ) : (
-          <Button variant="contained" color="error" onClick={handleOnOf}>
-            Error
-          </Button>
-        )}
         <Display display={display} />
-        {drumKeys.map((drumKey) => (
-          <DrumKey
-            key={drumKey.id}
-            drumKey={drumKey}
-            volume={volume}
-            handleDisplay={handleDisplay}
-          />
-        ))}
+        {power ? (
+          drumKeys.map((drumKey) => (
+            <DrumKey
+              key={drumKey.id}
+              drumKey={drumKey}
+              volume={volume}
+              handleDisplay={handleDisplay}
+            />
+          ))
+        ) : (
+          <div className="turn-on-message">Turn on the power to play!</div>
+        )}
       </div>
     </>
   );
