@@ -87,6 +87,7 @@ function App() {
           )}
         </div>
       </div>
+      <p className="myName">Made by ❤️ Yash Junagade</p>
     </>
   );
 }
