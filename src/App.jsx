@@ -69,20 +69,23 @@ function App() {
           volume={volume}
           power={power}
           setPower={setPower}
+          setDisplay={setDisplay}
         />
         <Display display={display} />
-        {power ? (
-          drumKeys.map((drumKey) => (
-            <DrumKey
-              key={drumKey.id}
-              drumKey={drumKey}
-              volume={volume}
-              handleDisplay={handleDisplay}
-            />
-          ))
-        ) : (
-          <div className="turn-on-message">Turn on the power to play!</div>
-        )}
+        <div className="drumKey-container">
+          {power ? (
+            drumKeys.map((drumKey) => (
+              <DrumKey
+                key={drumKey.id}
+                drumKey={drumKey}
+                volume={volume}
+                handleDisplay={handleDisplay}
+              />
+            ))
+          ) : (
+            <div className="turn-on-message">Turn on the power to play!</div>
+          )}
+        </div>
       </div>
     </>
   );
