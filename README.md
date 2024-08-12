@@ -11,7 +11,7 @@ This is a Drum Machine web application built using React. The Drum Machine allow
 
 ## Live Demo
 
-You can view the live project here: [Markdown Previewer](https://main--drummachine-yashjunagade.netlify.app/)
+You can view the live project here: [Drum Machine](https://main--drummachine-yashjunagade.netlify.app/)
 
 ## Installation
 
